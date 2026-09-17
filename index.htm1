@@ -1,1 +1,124 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kisan Simulator - Jo Chahe Karo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#1B5E20;color:#fff;font-family:Arial;text-align:center}
+.top{background:#FFEB3B;color:#000;padding:10px;font-weight:900;font-size:18px}
+.main{width:98%;max-width:500px;margin:auto}
+.stats{display:flex;justify-content:space-around;background:#000;padding:8px;border-radius:10px;margin:5px 0}
+.box{background:#fff;color:#000;border-radius:12px;padding:8px;margin:5px 0}
+canvas{width:100%;background:#6D4C41;border-radius:10px;border:3px solid #3E2723}
+.btn{padding:8px 12px;margin:3px;border:none;border-radius:15px;font-weight:800}
+.tool{background:#4CAF50;color:#fff}.tool.active{background:#FF5722}
+.tbtn{background:#FFC107;padding:10px 20px;border-radius:20px;font-size:20px}
+#cmd{width:80%;padding:10px;border-radius:20px;border:2px solid #4CAF50}
+</style>
+</head>
+<body>
+<div class="top">🚜 KISAN SIMULATOR - JO CHAHE KARO 🌾</div>
+<div class="main">
+<div class="stats">
+<div>💰<span id="coin">100</span></div><div>🌾<span id="stock">0</span></div><div>⛽<span id="fuel">100</span></div><div>📍<span id="mode">HAL</span></div>
+</div>
+
+<div class="box">
+<button class="btn tool active" onclick="setTool('hal',this)">🚜 HAL</button>
+<button class="btn tool" onclick="setTool('dhaan',this)">🌾 DHAAN</button>
+<button class="btn tool" onclick="setTool('ganna',this)">🎋 GANNA</button>
+<button class="btn tool" onclick="setTool('gehu',this)">🌿 GEHU</button>
+<button class="btn tool" onclick="setTool('pani',this)">💧 PANI</button>
+<button class="btn tool" onclick="setTool('kaat',this)">✂️ KAAT</button>
+</div>
+
+<canvas id="c" width="400" height="400"></canvas>
+
+<div class="box">
+<button class="tbtn" onclick="move(-1,0)">⬅️</button>
+<button class="tbtn" onclick="move(0,-1)">⬆️</button>
+<button class="tbtn" onclick="move(0,1)">⬇️</button>
+<button class="tbtn" onclick="move(1,0)">➡️</button>
+<br><br>
+<input id="cmd" placeholder="Type karo: dhaan lagao, ganna lagao, pani do, kaat lo">
+<button class="btn tool" onclick="runCmd()">▶️ KARO</button>
+</div>
+
+<div class="box" style="font-size:12px;text-align:left">
+<b>Kaise Khele:</b><br>
+1. HAL select karke khet joto (bhura hoga)<br>
+2. DHAAN/GANNA/GEHU select karke beej lagao<br>
+3. PANI do, fasal badhegi<br>
+4. KAAT ke paise kamao<br>
+5. Neeche likh ke bhi khel sakte ho: <i>"ganna lagao"</i>, <i>"pani do"</i>, <i>"sab kaat lo"</i>
+</div>
+</div>
+
+<script>
+let cv=document.getElementById('c'),ctx=cv.getContext('2d'),grid=10,size=40,tool='hal',coin=100,stock=0,fuel=100;
+let px=4,py=4;
+let farm=[]; for(let y=0;y<grid;y++){farm[y]=[]; for(let x=0;x<grid;x++) farm[y][x]={t:0,g:0};} // t:0 khali,1 jota, g:0 nahi,1 beej,2 chota,3 bada
+
+function setTool(t,el){tool=t; document.getElementById('mode').innerText=t.toUpperCase(); document.querySelectorAll('.tool').forEach(b=>b.classList.remove('active')); if(el) el.classList.add('active');}
+
+function draw(){
+ctx.clearRect(0,0,400,400);
+for(let y=0;y<grid;y++) for(let x=0;x<grid;x++){
+let f=farm[y][x],bx=x*size,by=y*size;
+if(f.t==0) ctx.fillStyle="#8D6E63"; else ctx.fillStyle="#5D4037";
+ctx.fillRect(bx+1,by+1,size-2,size-2);
+if(f.g==1){ctx.fillStyle="#8BC34A"; ctx.beginPath(); ctx.arc(bx+20,by+20,5,0,6.28); ctx.fill();}
+if(f.g==2){ctx.font="20px Arial"; ctx.fillText("🌱",bx+8,by+28);}
+if(f.g==3){
+if(f.crop=='dhaan') ctx.fillText("🌾",bx+6,by+30);
+if(f.crop=='ganna') ctx.fillText("🎋",bx+6,by+30);
+if(f.crop=='gehu') ctx.fillText("🌿",bx+6,by+30);
+}
+}
+// player tractor
+ctx.font="26px Arial"; ctx.fillText("🚜",px*size+4,py*size+28);
+}
+
+function action(){
+let f=farm[py][px];
+if(tool=='hal'){ if(fuel>0){f.t=1; fuel-=1; }}
+if(tool=='dhaan'||tool=='ganna'||tool=='gehu'){ if(f.t==1 && f.g==0 && coin>=5){f.g=1; f.crop=tool; f.timer=0; coin-=5; }}
+if(tool=='pani'){ if(f.g>0 && f.g<3){f.timer=(f.timer||0)+1; if(f.timer>2){f.g++; f.timer=0;}} fuel-=0.5;}
+if(tool=='kaat'){ if(f.g==3){f.g=0; f.t=0; stock+=1; coin+=20; }}
+update();
+}
+
+function move(dx,dy){
+px=Math.max(0,Math.min(grid-1,px+dx)); py=Math.max(0,Math.min(grid-1,py+dy)); action(); draw();
+}
+
+function runCmd(){
+let v=document.getElementById('cmd').value.toLowerCase();
+if(v.includes('dhaan')||v.includes('dhan')) setTool('dhaan');
+if(v.includes('ganna')) setTool('ganna');
+if(v.includes('gehu')||v.includes('gahu')) setTool('gehu');
+if(v.includes('hal')||v.includes('jot')) setTool('hal');
+if(v.includes('pani')) setTool('pani');
+if(v.includes('kaat')||v.includes('kato')) setTool('kaat');
+if(v.includes('sab')){ // sab kaat lo, sab me pani do
+for(let y=0;y<grid;y++) for(let x=0;x<grid;x++){ let f=farm[y][x]; if(v.includes('kaat')&&f.g==3){f.g=0; f.t=0; coin+=20; stock++;} if(v.includes('pani')&&f.g>0&&f.g<3){f.g++;} }
+}
+action(); draw(); document.getElementById('cmd').value='';
+}
+
+function update(){
+document.getElementById('coin').innerText=coin;
+document.getElementById('stock').innerText=stock;
+document.getElementById('fuel').innerText=Math.floor(fuel);
+if(fuel<=0){alert("Diesel khatam! Mandi me fasal becho!"); fuel=100;}
+}
+
+setInterval(()=>{ // auto growth
+for(let y=0;y<grid;y++) for(let x=0;x<grid;x++){ let f=farm[y][x]; if(f.g==1||f.g==2){ if(Math.random()>0.7){ f.timer=(f.timer||0)+0.1; if(f.timer>5){ if(f.g<3) f.g++; f.timer=0; } } } } draw();
+},1000);
+
+draw();
+</script>
+</body>
+</html>
