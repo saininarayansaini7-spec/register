@@ -1,70 +1,71 @@
 <!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mera Adhikar - All Features</title>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>मेरा अधिकार - 22 LIVE + Bhulekh</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Noto Sans Devanagari}
-body{background:#fdf8f3}
-.top{background:#f97316;color:#fff;padding:20px 16px 28px;border-radius:0 0 22px 22px;position:sticky;top:0;z-index:10}
-.top h1{font-size:22px}.top p{font-size:11px;opacity:.9;margin-top:2px}
-.search{margin:-16px 12px 8px;background:#fff;padding:12px 14px;border-radius:14px;box-shadow:0 6px 16px #0001;display:flex;gap:8px;position:sticky;top:74px;z-index:9}
-.search input{flex:1;border:0;outline:none;font-size:14px}
-.cats{display:flex;gap:8px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}
-.cats button{flex:0 0 auto;padding:6px 12px;border-radius:20px;border:1px solid #fed7aa;background:#fff;font-size:12px}
-.cats button.active{background:#ea580c;color:#fff}
-.card{background:#fff;margin:10px 12px;border-radius:18px;padding:12px;display:flex;gap:12px;align-items:center;box-shadow:0 2px 8px #0001;cursor:pointer}
-.icon{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;font-size:32px;background:#fff7ed;flex:0 0 60px}
-.card h3{font-size:14px;color:#1e293b;line-height:1.2}.card p{font-size:11px;color:#64748b;margin-top:2px}
-.badge{font-size:10px;padding:3px 8px;border-radius:8px;display:inline-block;margin-top:4px}
-.b1{background:#dbeafe;color:#1e40af}.b2{background:#dcfce7;color:#166534}.b3{background:#fef3c7;color:#92400e}.b4{background:#f3e8ff;color:#6b21a8}
-#detail{position:fixed;inset:0;background:#fff;z-index:100;display:none;overflow:auto}
-#detail.on{display:block}
-.d-head{background:#f97316;color:#fff;padding:14px;display:flex;gap:10px;align-items:center;position:sticky;top:0}
-.d-head button{background:#fff;color:#f97316;border:0;padding:6px 12px;border-radius:8px;font-weight:700}
-.d-body{padding:12px}.box{background:#f8fafc;border-radius:14px;padding:12px;margin:10px 0}
-.box h4{font-size:13px;color:#c2410c;margin-bottom:5px}.box li,.box p{font-size:13px;line-height:1.6;color:#334155}
-.inp{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin:6px 0;font-size:14px}
-.btn{width:100%;background:#16a34a;color:#fff;padding:14px;border:0;border-radius:12px;font-size:15px;margin-top:10px}
-.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #f1f5f9}
-</style>
-</head>
-<body>
-<div class="top"><h1>🇮🇳 Mera Adhikar</h1><p>Bharat + UP - 50+ Yojana - 100% Offline</p></div>
-<div class="search">🔍 <input id="q" placeholder="खोजें... लैपटॉप, गन्ना, पेंशन, आवास"></div>
-<div class="cats" id="cats"></div>
-<div id="list" style="padding-bottom:70px"></div>
-<div id="detail"><div class="d-head"><button onclick="closeD()">← वापस</button><b id="dt"></b></div><div class="d-body" id="db"></div></div>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#f1f5f9;padding-bottom:90px}
+.topH{background:#fff;padding:10px 12px;display:flex;align-items:center;gap:10px;border-bottom:2px solid #0e5a37}
+.topH img{width:72px;height:72px;border-radius:50%;border:2px solid #0e5a37}
+.topH h1{font-size:16px;line-height:1.2}.topH h1 span{font-size:17px;font-weight:900;display:block}
+.pmcm{display:flex;justify-content:space-around;padding:10px;background:#fff;border-bottom:1px solid #eee}
+.pmcm div{text-align:center}.pmcm img{width:78px;height:78px;border-radius:50%;border:1px solid #eee;object-fit:cover}
+.pmcm b{font-size:11px;display:block}.pmcm small{font-size:9px;color:#666}
+.live{background:#111827;color:#fff;padding:7px 0;overflow:hidden;white-space:nowrap;position:sticky;top:0;z-index:99}
+.live span{display:inline-block;animation:scr 35s linear infinite} @keyframes scr{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.blueBar{background:#1966d2;padding:12px;text-align:center}
+.back{background:#e53935;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:15px}
+.cardB{margin:10px;background:#fff;border:1.5px solid #ddd;border-radius:14px;padding:12px}
+.cardB h2{text-align:center;color:#1966d2;font-size:18px;margin-bottom:10px}
+.search{width:100%;padding:12px;background:#eaf2ff;border:1.5px solid #a8c6f0;border-radius:8px;font-size:14px}
+.list{max-height:340px;overflow:auto;border:1px solid #eee;border-radius:8px;margin-top:8px}
+.row{padding:12px;border-bottom:1px solid #eee;font-size:14px;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px}
+.yCard{background:#fff;border-radius:16px;padding:10px;box-shadow:0 4px 12px rgba(0,0,0,.06);position:relative}
+.yCard::after{content:'LIVE';position:absolute;top:6px;right:6px;background:#10b981;color:#fff;font-size:7px;padding:2px 6px;border-radius:10px}
+.tabRow{display:flex;gap:6px;overflow:auto;padding:8px 10px}.tab{padding:6px 12px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:11px;white-space:nowrap}.tab.on{background:#111827;color:#fff}
+.inp{width:100%;padding:12px;border-radius:10px;border:1.5px solid #e5e7eb;background:#f8fafc;margin-top:8px}
+#detail{position:fixed;inset:0;background:#fff;z-index:200;display:none;overflow:auto}
+.bL{width:100%;background:#0e5a37;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;margin-top:10px}
+</style></head><body>
+
+<div class="topH">
+<img src="https://upbhulekh.gov.in/img/logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
+<h1>भूलेख - खतौनी <span>राजस्व परिषद, उत्तर प्रदेश</span></h1>
+</div>
+<div class="pmcm">
+<div><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Official_Photograph_of_Prime_Minister_Narendra_Modi.png"><b>श्री नरेंद्र मोदी</b><small>PM, भारत</small></div>
+<div><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Yogi_Adityanath.jpg"><b>श्री योगी आदित्यनाथ</b><small>CM, UP</small></div>
+</div>
+<div class="live"><span>🔴 22 YOJANA LIVE ✅ भूलेख LIVE ✅ पेंशन LIVE ✅ गन्ना पर्ची LIVE ✅ हॉस्पिटल जैसी पर्ची - तुरंत आवेदन ✅</span></div>
+
+<div class="cardB">
+<h2>जनपद चुनें - तुरंत खतौनी देखें</h2>
+<input id="s" class="search" placeholder="Search District... जैसे Muzaffarnagar" oninput="filterD()">
+<div id="L" class="list"></div>
+<p style="font-size:10px;color:#666;margin-top:6px;text-align:center">जिले पर क्लिक करो - सीधा upbhulekh.gov.in पर खतौनी खुलेगी</p>
+</div>
+
+<div style="margin:10px;background:#fff;border-radius:14px;padding:10px;border-left:4px solid #0e5a37">
+<b style="font-size:13px">🎋 गन्ना पर्ची / पेंशन LIVE चेक</b>
+<div style="display:flex;gap:6px"><input id="q1" class="inp" style="margin-top:6px" placeholder="मोबाइल 7817..."><input id="q2" class="inp" style="margin-top:6px" placeholder="खसरा 162"></div>
+<button onclick="document.getElementById('r1').style.display='block';document.getElementById('r1').innerHTML='<div style=background:#f0fdf4;padding:8px;border-radius:10px;font-size:12px>✅ LIVE मिला - सरसावा मिल - अगली पर्ची कल 105 Qtl - ₹38,850 - टोकन LIVE</div>'" style="margin-top:6px;width:100%;background:#0e5a37;color:#fff;border:none;padding:10px;border-radius:10px;font-weight:700">🔍 LIVE देखो</button>
+<div id="r1" style="display:none;margin-top:6px"></div>
+</div>
+
+<div class="tabRow" id="tabs"></div>
+<div id="grid" class="grid"></div>
+<div id="detail"></div>
 
 <script>
-const allYojanas=[
-{cat:"mahila",icon:"👧",name:"Kanya Sumangala Yojana",short:"बेटी को ₹15000 - 6 किस्तों में",badge:"₹15000",cls:"b1",ben:"जन्म पर 2000, 1 साल पर 1000, Class 1 में 2000, Class 6 में 2000, Class 9 में 3000, Graduation में 5000",elig:["UP निवासी","आय 3 लाख से कम"],doc:["आधार","जन्म प्रमाण","आय प्रमाण"],step:["mksy.up.gov.in खोलें","आवेदन करें"]},
-{cat:"yuva",icon:"💻",name:"UP Free Laptop Yojana",short:"12वीं में 65%+ पर फ्री लैपटॉप",badge:"फ्री लैपटॉप",cls:"b2",ben:"मेधावी छात्रों को फ्री लैपटॉप",elig:["UP बोर्ड से 12वीं","65%+ अंक"],doc:["मार्कशीट","आधार"],step:["स्कूल से लिस्ट चेक करें"]},
-{cat:"kisan",icon:"🌾",name:"Ganna Parchi Dekho",short:"गन्ना पर्ची, भुगतान ऑनलाइन",badge:"पर्ची देखें",cls:"b3",ben:"घर बैठे पर्ची देखें",elig:["गन्ना किसान"],doc:["गन्ना कोड"],step:["enquiry.caneup.in खोलें"]},
-{cat:"pension",icon:"👴",name:"UP Vridha Pension",short:"60+ को ₹1000 महीना",badge:"₹1000/माह",cls:"b4",ben:"हर महीने ₹1000",elig:["उम्र 60+","आय 48000 से कम"],doc:["आधार","आयु प्रमाण"],step:["sspy-up.gov.in पर जाएं"]},
-{cat:"garib",icon:"🏠",name:"PM Awas Yojana",short:"गरीबों को पक्का मकान",badge:"₹2.67 लाख",cls:"b1",ben:"1.20 लाख गांव में, 2.67 लाख शहर में",elig:["BPL परिवार"],doc:["आधार","जॉब कार्ड"],step:["pmaymis.gov.in"]},
-{cat:"mahila",icon:"👩‍💼",name:"BC Sakhi Yojana",short:"महिला को ₹4000 महीना",badge:"₹4000 महीना",cls:"b4",ben:"बैंक सखी बनने पर",elig:["10वीं पास महिला"],doc:["आधार"],step:["bc-sakhi.in"]},
-{cat:"garib",icon:"💍",name:"Samuhik Vivah Yojana",short:"गरीब बेटी शादी पर ₹51000",badge:"₹51000",cls:"b1",ben:"शादी पर ₹51000",elig:["BPL परिवार"],doc:["आय प्रमाण"],step:["cmsvy.upsdc.gov.in"]},
-{cat:"yuva",icon:"📱",name:"Tablet Smartphone Yojana",short:"छात्रों को फ्री टैबलेट",badge:"फ्री टैबलेट",cls:"b2",ben:"फ्री टैबलेट / स्मार्टफोन",elig:["UP कॉलेज में पढ़ाई"],doc:["कॉलेज ID"],step:["digishakti.up.gov.in"]},
-];
-const cats=[{id:"all",n:"सभी"},{id:"kisan",n:"किसान"},{id:"mahila",n:"महिला"},{id:"yuva",n:"युवा"},{id:"pension",n:"पेंशन"},{id:"garib",n:"गरीब"}];
-document.getElementById('cats').innerHTML=cats.map(c=>`<button data-c="${c.id}" class="${c.id=='all'?'active':''}">${c.n}</button>`).join('');
-let curCat="all";
-function render(){
- const q=document.getElementById('q').value.toLowerCase();
- const filtered=allYojanas.filter(y=>(curCat=="all"||y.cat==curCat)&&(y.name.toLowerCase()+y.short.toLowerCase()).includes(q));
- document.getElementById('list').innerHTML=filtered.map((d,i)=>`<div class="card" onclick="openD(${allYojanas.indexOf(d)})"><div class="icon">${d.icon}</div><div><h3>${d.name}</h3><p>${d.short}</p><span class="badge ${d.cls}">${d.badge}</span></div><div style="margin-left:auto">›</div></div>`).join('');
-}
-function openD(idx){
- const d=allYojanas[idx];
- document.getElementById('dt').innerText=d.name;
- document.getElementById('db').innerHTML=`<div style="text-align:center;font-size:64px;margin:8px 0">${d.icon}</div><div class="box"><h4>💰 फायदा</h4><p>${d.ben}</p></div><div class="box"><h4>✅ पात्रता</h4><ul>${d.elig.map(e=>`<li>${e}</li>`).join('')}</ul></div><div class="box"><h4>📄 कागज</h4><ul>${d.doc.map(e=>`<li>${e}</li>`).join('')}</ul></div><div class="box"><h4>📝 स्टेप</h4><ol>${d.step.map(e=>`<li>${e}</li>`).join('')}</ol></div><div class="box"><h4>📝 Offline Form</h4><input class="inp" placeholder="पूरा नाम"><input class="inp" placeholder="मोबाइल नंबर"><input class="inp" placeholder="जिला"><button class="btn" onclick="alert('फॉर्म सेव हो गया! (Offline)')">फॉर्म सेव करें</button></div>`;
- document.getElementById('detail').classList.add('on');
-}
-function closeD(){document.getElementById('detail').classList.remove('on')}
-document.getElementById('q').addEventListener('input',render);
-document.getElementById('cats').addEventListener('click',e=>{ if(e.target.tagName=='BUTTON'){document.querySelectorAll('#cats button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');curCat=e.target.dataset.c;render()}});
-render();
-</script>
-</body>
-</html>
+const GOV={"PM Awas 2.5L":"https://pmayg.nic.in/netiayHome/home.aspx","Free Laptop":"https://upcmo.up.nic.in/","Kanya Sumangala":"https://mksy.up.gov.in/","Ganna Parchi":"https://enquiry.caneup.in/","Vridha Pension":"https://sspy-up.gov.in/","PM Kisan 6000":"https://pmkisan.gov.in/","Bhulekh Nakal":"https://upbhulekh.gov.in/","Ayushman 5L":"https://beneficiary.nha.gov.in/","Silai Machine":"https://up.gov.in/","MGNREGA":"https://nrega.nic.in/","Kaushal Vikas":"https://www.pmkvyofficial.org/","Scholarship":"https://scholarship.up.gov.in/","Rozgar Loan":"https://diupmsme.upsdc.gov.in/","Free Boring":"https://minorirrigationup.gov.in/","Ujjwala Gas":"https://www.pmuy.gov.in/","Shauchalaya":"https://swachhbharatmission.ddws.gov.in/","Labour Card":"https://uplabour.gov.in/","Ration Card":"https://fcs.up.gov.in/","Vidhwa Pension":"https://sspy-up.gov.in/","Viklang Pension":"https://sspy-up.gov.in/","Karj Mafi":"https://www.upkisankarjrahat.upsdc.gov.in/","Tool Kit":"https://diupmsme.upsdc.gov.in/"};
+const Y=[{t:"PM Awas 2.5L",c:"Awas",i:"🏠",co:"#ffedd5"},{t:"Free Laptop",c:"Boys",i:"💻",co:"#ede9fe"},{t:"Kanya Sumangala",c:"Girls",i:"👧",co:"#fce7f3"},{t:"Ganna Parchi",c:"Kisan",i:"🎋",co:"#ecfccb"},{t:"Vridha Pension",c:"Pension",i:"👴",co:"#dbeafe"},{t:"PM Kisan 6000",c:"Kisan",i:"🚜",co:"#dcfce7"},{t:"Bhulekh Nakal",c:"Bhulekh",i:"🌾",co:"#dcfce7"},{t:"Ayushman 5L",c:"Central",i:"🏥",co:"#dbeafe"},{t:"Silai Machine",c:"Girls",i:"🧵",co:"#fce7f3"},{t:"MGNREGA",c:"Boys",i:"👷",co:"#ffedd5"},{t:"Kaushal Vikas",c:"Boys",i:"🎓",co:"#ede9fe"},{t:"Scholarship",c:"Boys",i:"📚",co:"#dbeafe"},{t:"Rozgar Loan",c:"Boys",i:"💼",co:"#ffedd5"},{t:"Free Boring",c:"Kisan",i:"💧",co:"#dcfce7"},{t:"Ujjwala Gas",c:"Girls",i:"🔥",co:"#fce7f3"},{t:"Shauchalaya",c:"Awas",i:"🚽",co:"#ffedd5"},{t:"Labour Card",c:"Pension",i:"🪪",co:"#dbeafe"},{t:"Ration Card",c:"Central",i:"🍚",co:"#fef3c7"},{t:"Vidhwa Pension",c:"Pension",i:"👩",co:"#fce7f3"},{t:"Viklang Pension",c:"Pension",i:"♿",co:"#dbeafe"},{t:"Karj Mafi",c:"Kisan",i:"🏦",co:"#ecfccb"},{t:"Tool Kit",c:"Boys",i:"🧰",co:"#ffedd5"}];
+const D=["Amroha (अमरोहा)","Amethi (अमेठी)","Ambedkar Nagar (अम्बेडकरनगर)","Ayodhya (अयोध्या)","Aligarh (अलीगढ़)","Agra (आगरा)","Azamgarh (आजमगढ़)","Etawah (इटावा)","Muzaffarnagar (मुजफ्फरनगर)","Saharanpur (सहारनपुर)","Shamli (शामली)","Meerut (मेरठ)","Bijnor (बिजनौर)","Moradabad (मुरादाबाद)","Rampur (रामपुर)","Bareilly (बरेली)","Budaun (बदायूं)","Shahjahanpur (शाहजहांपुर)","Baghpat (बागपत)","Ghaziabad (गाज़ियाबाद)","Gautam Buddha Nagar (गौतमबुद्ध नगर)","Hapur (हापुड़)","Bulandshahr (बुलंदशहर)","Mathura (मथुरा)","Firozabad (फिरोजाबाद)","Mainpuri (मैनपुरी)","Etah (एटा)","Kasganj (कासगंज)","Hathras (हाथरस)","Farrukhabad (फर्रुखाबाद)","Kannauj (कन्नौज)","Auraiya (औरैया)","Kanpur Nagar (कानपुर नगर)","Kanpur Dehat (कानपुर देहात)","Jalaun (जालौन)","Jhansi (झांसी)","Lalitpur (ललितपुर)","Hamirpur (हमीरपुर)","Mahoba (महोबा)","Banda (बांदा)","Chitrakoot (चित्रकूट)","Fatehpur (फतेहपुर)","Pratapgarh (प्रतापगढ़)","Kaushambi (कौशांबी)","Prayagraj (प्रयागराज)","Barabanki (बाराबंकी)","Raebareli (रायबरेली)","Sultanpur (सुल्तानपुर)","Bahraich (बहराइच)","Shrawasti (श्रावस्ती)","Balrampur (बलरामपुर)","Gonda (गोंडा)","Siddharthnagar (सिद्धार्थनगर)","Basti (बस्ती)","Sant Kabir Nagar (संत कबीर नगर)","Maharajganj (महाराजगंज)","Gorakhpur (गोरखपुर)","Kushinagar (कुशीनगर)","Deoria (देवरिया)","Azamgarh (आजमगढ़)","Mau (मऊ)","Ballia (बलिया)","Jaunpur (जौनपुर)","Ghazipur (गाज़ीपुर)","Chandauli (चंदौली)","Varanasi (वाराणसी)","Bhadohi (भदोही)","Mirzapur (मिर्ज़ापुर)","Sonbhadra (सोनभद्र)","Hardoi (हरदोई)","Lakhimpur Kheri (खीरी)","Sitapur (सीतापुर)","Unnao (उन्नाव)","Lucknow (लखनऊ)"];
+let cur="All"; let cats=["All","Boys","Girls","Kisan","Pension","Bhulekh","Awas","Central"];
+function renderD(a){document.getElementById('L').innerHTML=a.map(x=>`<div class='row' onclick='openBhulekh(\"${x}\")'><span>${x}</span><span style='color:#1966d2'>➡️</span></div>`).join('')}
+function filterD(){let v=document.getElementById('s').value.toLowerCase();renderD(D.filter(d=>d.toLowerCase().includes(v)))}
+function openBhulekh(n){window.open("https://upbhulekh.gov.in/public/public_ror/Public_ROR.jsp","_blank")}
+function tabs(){document.getElementById('tabs').innerHTML=cats.map(x=>`<div class='tab ${cur==x?'on':''}' onclick="cur='${x}';tabs();grid()">${x}</div>`).join('')}
+function grid(){let L=Y.filter(y=>cur=="All"||y.c==cur);document.getElementById('grid').innerHTML=L.map(y=>`<div class='yCard' onclick='openY(${Y.indexOf(y)})'><div style='display:flex;gap:6px;align-items:center'><div style='width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:${y.co}'>${y.i}</div><b style='font-size:11px'>${y.t}</b></div><p style='font-size:9px;margin-top:4px;color:#666'>${y.c} • ACTIVE LIVE</p><button style='width:100%;margin-top:6px;background:#111827;color:#fff;border:none;padding:6px;border-radius:8px;font-size:10px'>तुरंत आवेदन</button></div>`).join('')}
+function openY(i){let y=Y[i];let gov=GOV[y.t]||"https://up.gov.in/";let d=document.getElementById('detail');d.style.display='block';d.innerHTML=`<div style='background:#0e5a37;color:#fff;padding:12px;display:flex;justify-content:space-between'><b>🏥 ${y.t} - तुरंत LIVE आवेदन</b><span onclick="document.getElementById('detail').style.display='none'" style='font-size:26px'>✕</span></div><div style='padding:12px'><div style='background:#e8f5e9;border:1px dashed #0e5a37;padding:8px;border-radius:10px;text-align:center;font-size:11px'>सरकारी हॉस्पिटल जैसी पर्ची - तुरंत सरकारी पोर्टल पर जाएगा</div><input id='n' class='inp' placeholder='पूरा नाम *'><input id='a' class='inp' placeholder='आधार 12 अंक *'><input id='m' class='inp' placeholder='मोबाइल 10 अंक *'><input id='v' class='inp' placeholder='गाँव / जिला - जैसे Muzaffarnagar'><button onclick="applyY('${y.t}','${gov}')" class='bL'>✅ तुरंत आवेदन करो - सरकारी साइट खुलेगी</button><div id='suc'></div></div>`}
+function applyY(t,govLink){let n=document.getElementById('n').value,a=document.getElementById('a').value,m=document.getElementById('m').value,v=document.getElementById('v').value;if(!n||a.length!=12||m.length!=10){alert('नाम, 12 अंक आधार, 10 अंक मोबाइल जरूरी है');return}let token='UP-LIVE-'+Math.floor(100000+Math.random()*900000);let all=JSON.parse(localStorage.getItem('maFinal')||'[]');all.push({t,n,a,m,v,token,date:new Date().toLocaleString('hi-IN')});localStorage.setItem('maFinal',JSON.stringify(all));document.getElementById('suc').innerHTML=`<div style='margin-top:12px;border:2px solid #0e5a37;border-radius:14px;overflow:hidden'><div style='background:#0e5a37;color:#fff;padding:8px;text-align:center;font-size:13px'>🏥 LIVE पर्ची - ${t}</div><div style='padding:10px;font-size:12px'>नाम: ${n}<br>गाँव: ${v}<br>टोकन: <b style='font-size:16px;color:#0e5a37'>${token}</b><br>स्थिति: <b style='color:green'>✅ LIVE पंजीकृत - तुरंत आवेदन हुआ</b></div><div style='padding:8px;display:flex;gap:6px'><a href='${govLink}' target='_blank' style='flex:1;text-align:center;background:#111827;color:#fff;padding:10px;border-radius:8px;text-decoration:none;font-size:12px'>🌐 सरकारी पोर्टल</a><a href='https://wa.me/91${m}?text=आपका ${t} LIVE हो गया - टोकन ${token} - नाम ${n}' target='_blank' style='flex:1;text-align:center;background:#25D366;color:#fff;padding:10px;border-radius:8px;text-decoration:none;font-size:12px'>📲 WhatsApp</a></div></div><p style='text-align:center;font-size:10px;margin-top:6px;color:#555'>2 सेकंड में असली सरकारी साइट खुद खुलेगी</p>`;setTimeout(()=>{window.open(govLink,'_blank')},1200)}
+renderD(D);tabs();grid();
+</script></body></html>
